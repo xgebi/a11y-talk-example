@@ -1,33 +1,16 @@
 <template>
-  <div id="app">
-    <Tabs v-bind:tabsData="tabs" />    
+  <div id="app">     
+    <router-link to="/buttons">Go to Buttons example</router-link>  
+    <router-link to="/tabs">Go to Tabs example</router-link>  
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Tabs from './components/Tabs.vue'
 
 export default {
   name: 'app',
-  components: {
-    Tabs
-  },
-  data: function () {
-    return {
-      tabs: [
-        {
-          name: "Hello",
-          title: "English",
-          content: "How are you?"
-        },
-        {
-          name: "Moin",
-          title: "Deutsch",
-          content: "Wie geht's?"
-        }
-      ]
-    }
-  }
 }
 </script>
 
