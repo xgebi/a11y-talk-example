@@ -1,6 +1,7 @@
 <template>
   <div>
     <Tabs v-bind:tabsData="tabs" /> 
+    <a href="#">test</a>
   </div>
 </template>
 
@@ -17,7 +18,7 @@
         tabs: [
           {
             name: "Hello",
-            content: "How are you?"
+            content: "How are you? <a href='#'>Inner</a>"
           },
           {
             name: "Moin",

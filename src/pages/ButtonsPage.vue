@@ -1,8 +1,8 @@
 <template>
   <div>
-    <BadButtonLink link="aaa"/><br/>
-    <AccessibleBadButtonLink link="aaa"/><br/>
-    <GoodButtonLink link="aaa"/>
+    <BadButtonLink twitterProfile="aaa"/><br/>
+    <AccessibleBadButtonLink twitterProfile="aaa"/><br/>
+    <GoodButtonLink twitterProfile="aaa"/>
   </div>
 </template>
 
@@ -21,6 +21,9 @@
   }
 </script>
 
-<style scoped>
-
+<style>
+  img {
+    max-width: 2rem;
+    max-height: 2rem;
+  }
 </style>

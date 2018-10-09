@@ -1,13 +1,30 @@
 <template>
-  <div class="tabbed">
-    <ul role="tablist">
-      <li v-bind:key="index" v-for="(tab, index) in tabNames">
-        <a :href="'#section-' + index" :id="'tab-'+index" v-on:keydown="moveToAnotherTab" v-on:click="switchTab" ref="tabs" :aria-selected="{true: index === 0}">{{tab}}</a>
-      </li>
-    </ul>
-    <section v-bind:key="index" v-for="(content, index) in tabContents" :id="'section-'+index" ref="tabSections" role="tabpanel" :aria-labelledby="'tab-'+index" v-on:keydown="leavePanel">
-      {{content}}
-    </section>
+  <div>
+
+
+    <div class="tabs">
+      <div role="tablist" aria-label="Tabbed interface">
+        <button role="tab"
+                v-bind:key="index" 
+                v-for="(tab, index) in tabNames"
+                :id="'tab-'+index"
+                :aria-controls="'tab-'+index"
+                v-on:keydown="moveToAnotherTab" 
+                v-on:click="switchTab"
+                ref="tabs">
+          {{tab}}
+        </button>
+      </div>
+      <div  tabindex="0"
+            v-bind:key="index" 
+            v-for="(content, index) in tabContents" 
+            role="tabpanel"
+            id="nils-tab"
+            :aria-labelledby="'tab-'+index"
+            v-html="content"
+            ref="tabSections">
+      </div>      
+    </div>
   </div>
 </template>
 
@@ -34,13 +51,15 @@
     mounted: function () {
       this.$nextTick(function () {
         this.$refs.tabSections.forEach((tabSection, index) => {
-          if (index === 0)
+          tabSection.setAttribute("tabindex", "0");
+          if (index === 0) {          
             return;
+          }
           tabSection.setAttribute("hidden", "hidden");
         });
         this.$refs.tabs.forEach((tab, index) => {
           if (index === 0) {
-            tab.setAttribute("tabindex", "0");
+            tab.removeAttribute("tabindex");
             tab.setAttribute("aria-selected", "true");
             return;
           }
@@ -60,7 +79,7 @@
           this.$refs.tabs[index+1].setAttribute("aria-selected", "false");
           this.$refs.tabs[index].setAttribute("aria-selected", "true");
           this.$refs.tabs[index+1].setAttribute("tabindex", "-1");
-          this.$refs.tabs[index].setAttribute("tabindex", "0");
+          this.$refs.tabs[index].removeAttribute("tabindex");
           this.$refs.tabs[index].focus();
         }
         if (event.keyCode === 39 && index < (this.tabNames.length - 1)) {
@@ -70,11 +89,10 @@
           this.$refs.tabs[index-1].setAttribute("aria-selected", "false");
           this.$refs.tabs[index].setAttribute("aria-selected", "true");
           this.$refs.tabs[index-1].setAttribute("tabindex", "-1");
-          this.$refs.tabs[index].setAttribute("tabindex", "0");
+          this.$refs.tabs[index].removeAttribute("tabindex");
           this.$refs.tabs[index].focus();
         }                
         if (event.keyCode === 40) {
-          this.$refs.tabSections[index].setAttribute("tabindex", "0");
           this.$refs.tabSections[index].focus();
         }
       },
@@ -84,7 +102,7 @@
         this.$refs.tabs.forEach(function(tab, index) {
           if (index === currentIndex) {
             tab.setAttribute("aria-selected", "true");
-            tab.setAttribute("tabindex", "0");
+            tab.removeAttribute("tabindex");
             tab.focus();
             return;
           }
