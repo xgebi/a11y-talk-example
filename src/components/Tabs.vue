@@ -128,7 +128,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 [role="tablist"] {
   padding: 0;
 }
