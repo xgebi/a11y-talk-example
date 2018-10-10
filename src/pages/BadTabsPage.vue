@@ -9,7 +9,7 @@
   import Tabs from '../components/Tabs.vue'
 
   export default {
-    name: "TabsPage",
+    name: "BadTabsPage",
     components: {
       Tabs
     },

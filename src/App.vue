@@ -3,7 +3,8 @@
     <nav>
       <ul>    
         <li><router-link to="/buttons">Go to Buttons example</router-link>  </li>
-        <li><router-link to="/tabs">Go to Tabs example</router-link>  </li>
+        <li><router-link to="/bad-tabs">Go to Bad Tabs example</router-link>  </li>
+        <li><router-link to="/good-tabs">Go to Good Tabs example</router-link>  </li>
       </ul>
     </nav>
     <main role="main">

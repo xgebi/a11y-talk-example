@@ -4,7 +4,7 @@
 
     <div class="tabs">
       <div role="tablist" aria-label="Tabbed interface">
-        <button role="tab"
+        <a role="tab"
                 v-bind:key="index" 
                 v-for="(tab, index) in tabNames"
                 :id="'tab-'+index"
@@ -13,7 +13,7 @@
                 v-on:click="switchTab"
                 ref="tabs">
           {{tab}}
-        </button>
+        </a>
       </div>
       <div  tabindex="0"
             v-bind:key="index" 

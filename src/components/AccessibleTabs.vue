@@ -27,7 +27,7 @@
 <script>
 
   export default {
-    name: 'Tabs',
+    name: 'AccessibleTabs',
     props: [
       'tabsData'
     ],
@@ -102,6 +102,8 @@
             // because we need to prevent page scroll >:)
             case this.keys.up:
             case this.keys.down:
+            case this.keys.left:
+            case this.keys.right:
               this.determineOrientation(event);
               break;
           }
