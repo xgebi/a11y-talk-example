@@ -138,12 +138,7 @@
         switchTabOnArrowPress: function(event) {
           var pressed = event.keyCode;
 
-          for (let x = 0; x < this.$refs.tabs.length; x++) {
-            this.$refs.tabs[x].addEventListener('focus', this.focusEventHandler);
-          }
-
           if (this.direction[pressed]) {
-            var target = event.target;
             let index = Array.prototype.indexOf.call(this.$refs.tabs, event.target);
             if (index !== undefined) {
               if (this.$refs.tabs[index + this.direction[pressed]]) {
@@ -166,12 +161,6 @@
         // Make a guess
         focusLastTab: function() {
           this.$refs.tabs[this.$refs.tabs.length - 1].focus();
-        },
-
-        focusEventHandler: function(event) {
-          //var target = event.target;
-          
-          //setTimeout(checkTabFocus, delay, target);
         },
         // Activates any given tab panel
         activateTab: function (tab, setFocus) {
@@ -200,8 +189,7 @@
         deactivateTabs: function () {
           for (let t = 0; t < this.$refs.tabs.length; t++) {
             this.$refs.tabs[t].setAttribute('tabindex', '-1');
-            this.$refs.tabs[t].setAttribute('aria-selected', 'false');
-            this.$refs.tabs[t].removeEventListener('focus', this.focusEventHandler);
+            this.$refs.tabs[t].setAttribute('aria-selected', 'false');            
           }
 
           for (let p = 0; p < this.$refs.panels.length; p++) {
